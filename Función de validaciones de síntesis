@@ -1,0 +1,12 @@
+function validateSyntax(code, language) {
+    // Este es solo un ejemplo. Implementar validaciones reales por lenguaje requiere de más detalles.
+    if (language === 'JavaScript') {
+        try {
+            new Function(code); // Esto evalúa el código JavaScript
+            return true; // Sintaxis válida
+        } catch (e) {
+            return false; // Sintaxis inválida
+        }
+    }
+    return false; // Otros lenguajes pueden necesitar validaciones específicas
+}

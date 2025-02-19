@@ -1,0 +1,5 @@
+let feedback = {};
+function leaveFeedback(translationId, comment) {
+    feedback[translationId] = comment;
+    console.log(`Comentario recibido: "${comment}" para la traducción ID ${translationId}`);
+}

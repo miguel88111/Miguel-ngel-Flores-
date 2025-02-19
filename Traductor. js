@@ -1,0 +1,6 @@
+function translateCode(languageFrom, languageTo, code) {
+    const translationId = Object.keys(translations).length + 1;
+    const translatedCode = `Traducción de ${languageFrom} a ${languageTo}: ${code}`;
+    translations[translationId] = { originalCode: code, translatedCode: translatedCode, votes: [] };
+    return translationId;
+}

@@ -1,0 +1,14 @@
+function compareCodes(originalCode, translatedCode) {
+    const JsDiff = require('diff');
+    const diff = JsDiff.diffWords(originalCode, translatedCode);
+    diff.forEach((part) => {
+        // Puedes aplicar un formato colorido para resaltar las diferencias
+        if (part.added) {
+            console.log(`+ ${part.value}`);
+        } else if (part.removed) {
+            console.log(`- ${part.value}`);
+        } else {
+            console.log(`  ${part.value}`);
+        }
+    });
+}

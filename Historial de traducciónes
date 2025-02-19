@@ -1,0 +1,12 @@
+let translationHistory = [];
+function saveTranslationHistory(translationId, languageFrom, languageTo, code, translatedCode) {
+    const historyEntry = {
+        translationId,
+        languageFrom,
+        languageTo,
+        originalCode: code,
+        translatedCode,
+        timestamp: new Date().toISOString(),
+    };
+    translationHistory.push(historyEntry);
+}

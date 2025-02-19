@@ -1,0 +1,8 @@
+function convertToPseudocode(code, language) {
+    let pseudocode = '';
+    if (language === 'JavaScript') {
+        pseudocode = code.replace('function', 'función').replace('{', 'inicio').replace('}', 'fin');
+        // Agregar más reglas de conversión...
+    }
+    return pseudocode;
+}

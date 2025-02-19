@@ -1,0 +1,7 @@
+function suggestChanges(languageFrom, languageTo, code) {
+    if (languageFrom === 'Python' && languageTo === 'JavaScript') {
+        // Reemplazar "print" en Python por "console.log" en JavaScript
+        const suggestedCode = code.replace('print', 'console.log');
+        console.log('Sugerencia de cambio:', suggestedCode);
+    }
+}

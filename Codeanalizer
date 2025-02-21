@@ -1,0 +1,112 @@
+import re
+
+
+
+# Define los patrones para los tokens más comunes (palabras clave, operadores, etc.)
+
+patterns = {
+
+    "keywords": r"\b(def|class|if|else|for|while|function)\b",
+
+    "identifier": r"\b[a-zA-Z_][a-zA-Z0-9_]*\b",
+
+    "operators": r"[-+*/=<>!]",
+
+    "numbers": r"\b\d+\b",
+
+    "strings": r"\"[^\"]*\""
+
+}
+
+
+
+def tokenize(code):
+
+    tokens = []
+
+    for token_type, pattern in patterns.items():
+
+        matches = re.findall(pattern, code)
+
+        tokens.extend([(token, token_type) for token in matches])
+
+    return tokens
+
+
+
+code_sample = "def my_function(x, y): return x + y"
+
+tokens = tokenize(code_sample)
+
+print(tokens)
+
+import ast
+
+
+
+# Código de ejemplo en Python
+
+Code = “def sum(a, b): return a + b”
+
+
+
+# Genera el AST del código
+
+Parsed_code = ast.parse(code)
+
+
+
+# Muestra la estructura del AST
+
+Print(ast.dump(parsed_code, indent=4))
+
+Def semantic_analysis(code):
+
+    # Lógica para detectar errores semánticos, como uso de variables no definidas
+
+    Defined_vars = set()
+
+    Lines = code.split(“\n”)
+
+    For line in lines:
+
+        Words = line.split()
+
+        For word in words:
+
+            If word == “return” and word not in defined_vars:
+
+                Print(f”Error: la variable ‘{word}’ no está definida.”)
+
+            Elif word ¡= “return”:
+
+                Defined_vars.add(word)
+
+
+
+# Ejemplo de código
+
+Code = “def sum(a, b):\n    return x”
+
+Semantic_analysis(code)
+
+Def compare_syntax(language_1_code, language_2_code):
+
+    If “def” in language_1_code and “function” in language_2_code:
+
+        Print(“El código está en Python y JavaScript.”)
+
+    Else:
+
+        Print(“Los lenguajes no coinciden.”)
+
+        
+
+Code_python = “def sum(a, b): return a + b”
+
+Code_js = “function sum(a, b) { return a + b; }”
+
+Compare_syntax(code_python, code_js)
+
+
+

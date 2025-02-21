@@ -1,0 +1,13 @@
+fun verificarPermisos() {
+    val permisosNecesarios = arrayOf(
+        Manifest.permission.CAMERA,
+        Manifest.permission.USE_BIOMETRIC,
+        Manifest.permission.WRITE_EXTERNAL_STORAGE
+    )
+
+    if (permisosNecesarios.all { ContextCompat.checkSelfPermission(this, it) == PackageManager.PERMISSION_GRANTED }) {
+        inicializarBiometria()
+    } else {
+        ActivityCompat.requestPermissions(this, permisosNecesarios, 100)
+    }
+}

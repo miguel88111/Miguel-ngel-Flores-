@@ -1,0 +1,169 @@
+
+// Componente.js
+const Componente = () => {
+  return <div>Componente</div>;
+};
+export default Componente;  // Exportación por defecto
+// Componente.js
+export const ComponenteA = () => {
+  return <div>Componente A</div>;
+};
+
+export const ComponenteB = () => {
+  return <div>Componente B</div>;
+};
+// Componente.js
+export const ComponenteA = () => {
+  return <div>Componente A</div>;
+};
+
+export const ComponenteB = () => {
+  return <div>Componente B</div>;
+};
+// Verificador de exportaciones
+const verifyExport = (component) => {
+  // Verifica si el componente es una función de React
+  if (typeof component === 'function') {
+    return true;  // Componente válido
+  }
+  return false;  // Componente no válido
+};
+
+// Exportación por defecto
+const ComponenteDefault = () => {
+  return <div>Componente por defecto</div>;
+};
+export default verifyExport(ComponenteDefault) ? ComponenteDefault : null;  // Solo exportar si es válido
+
+// Exportaciones nombradas
+export const ComponenteA = () => {
+  return <div>Componente A</div>;
+};
+export const ComponenteB = () => {
+  return <div>Componente B</div>;
+};
+
+// Solo exportar si las exportaciones son válidas
+export const validNamedExports = {
+  ComponenteA: verifyExport(ComponenteA) ? ComponenteA : null,
+  ComponenteB: verifyExport(ComponenteB) ? ComponenteB : null,
+};
+import React from 'react';
+import { validNamedExports } from './Componente';  // Importar las exportaciones válidas
+
+const App = () => {
+  return (
+    <div>
+      <h1>Componentes Válidos</h1>
+      {validNamedExports.ComponenteA && <validNamedExports.ComponenteA />}
+      {validNamedExports.ComponenteB && <validNamedExports.ComponenteB />}
+    </div>
+  );
+};
+
+export default App;
+if (!verifyExport(ComponenteDefault)) {
+  console.error("La exportación por defecto no es válida.");
+  // Aquí puedes lanzar un error o realizar una acción específica si la exportación es incorrecta
+}
+
+if (!verifyExport(ComponenteA) || !verifyExport(ComponenteB)) {
+  console.error("Algunas exportaciones nombradas no son válidas.");
+  // Eliminar o bloquear la importación si las exportaciones son inválidas
+}
+const fs = require('fs');
+
+// Verifica si un archivo existe
+function checkIfFileExists(filePath) {
+  if (!fs.existsSync(filePath)) {
+    return false;  // Archivo no encontrado
+  }
+  return true;  // Archivo existe
+}
+try {
+  const myModule = require('./myModule');  // Intentar importar el módulo
+  console.log("Módulo importado correctamente.");
+} catch (error) {
+  console.error("Error de importación:", error.message);
+}
+import React, { useState, useEffect } from 'react';
+
+const Corrector = () => {
+  const [importError, setImportError] = useState(null);
+  const [importedFile, setImportedFile] = useState(null);
+
+  useEffect(() => {
+    try {
+      const module = require('./myModule');  // Intentar importar el módulo
+      setImportedFile(module);
+    } catch (error) {
+      setImportError("Error de importación: El archivo no se ha encontrado o hay un problema en la importación.");
+    }
+  }, []);
+
+  return (
+    <div>
+      <h1>Corrector de Importación</h1>
+      {importError ? (
+        <div style={{ color: 'red' }}>
+          <strong>{importError}</strong>
+        </div>
+      ) : (
+        <div>
+          <strong>Archivo importado correctamente.</strong>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Corrector;
+const Corrector = () => {
+  const [importError, setImportError] = useState(null);
+  const [suggestions, setSuggestions] = useState([]);
+  const [importedFile, setImportedFile] = useState(null);
+
+  useEffect(() => {
+    try {
+      const module = require('./myModule');
+      setImportedFile(module);
+      setSuggestions([]);  // Limpiar sugerencias si la importación es exitosa
+    } catch (error) {
+      setImportError("Error de importación: El archivo no se ha encontrado o hay un problema en la importación.");
+      setSuggestions([
+        "Verifica que la ruta del archivo sea correcta.",
+        "Asegúrate de que el archivo esté en el directorio correcto.",
+        "Verifica que el nombre del archivo coincida con la importación."
+      ]);
+    }
+  }, []);
+
+  return (
+    <div>
+      <h1>Corrector de Importación</h1>
+      {importError ? (
+        <div style={{ color: 'red' }}>
+          <strong>{importError}</strong>
+          <ul>
+            {suggestions.map((suggestion, index) => (
+              <li key={index}>{suggestion}</li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <div>
+          <strong>Archivo importado correctamente.</strong>
+        </div>
+      )}
+    </div>
+  );
+};
+try {
+  const myModule = require('./myModule');
+  if (!myModule) throw new Error("Módulo inválido");
+  // Continuar con la ejecución si la importación es correcta
+} catch (error) {
+  console.error("Importación fallida:", error.message);
+  // Deshabilitar la ejecución del código
+  return;
+}

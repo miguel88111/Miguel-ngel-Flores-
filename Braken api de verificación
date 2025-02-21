@@ -1,0 +1,31 @@
+#include <iostream>
+#include <json/json.h> // Para manejar JSON en el backend
+
+// Aquí puedes usar un servidor como `cpp-httplib` para crear una API RESTful.
+
+void handleVerifyCodeRequest(const httplib::Request& req, httplib::Response& res) {
+    // Parseamos el JSON de la solicitud
+    Json::Value requestData;
+    std::istringstream(req.body) >> requestData;
+    std::string userId = requestData["userId"].asString();
+    std::string code = requestData["code"].asString();
+
+    bool isDuplicate = checkIfCodeExists(userId, code);
+
+    // Respondemos si el código es duplicado o no
+    Json::Value response;
+    response["isDuplicate"] = isDuplicate;
+    res.set_content(response.toStyledString(), "application/json");
+}
+
+int main() {
+    httplib::Server server;
+
+    // Ruta para verificar el código
+    server.Post("/verify-code", handleVerifyCodeRequest);
+
+    // Iniciar el servidor en el puerto 8080
+    server.listen("localhost", 8080);
+
+    return 0;
+}
